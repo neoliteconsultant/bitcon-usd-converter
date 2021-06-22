@@ -32,10 +32,32 @@ the following tools
 
 ### Calling API Endpoints
 
-Now that the service is up, make a HTTP POST to reverse a string.
+Get the latest exchange rates.
 
 ``` 
-$ curl -X POST http://localhost:8097/api/v1/ExchangeRate/reversetext -H "Content-Type: application/json"  -d '{"content":"a,b#@c"}'
+$ curl http://localhost:8097/api/v1/rates/latest
+```
+
+
+Get historical exchange rates.
+
+``` 
+$ curl http://localhost:8097/api/v1/rates/historical?startDate={startDate}&endDate={endDate}
+```
+
+Where {startDate} and {endDate} are the start and end dates in YYYY-MM-DD format
+respectively, e.g
+
+``` 
+$ curl http://localhost:8097/api/v1/rates/historical?startDate=2021-01-25&endDate=2021-01-27
+```
+### Configuring exchange rate period
+
+To configure the exchange period to check exchange rates, modify the **rate.period** key
+in src/main/resources/application.properties to a value in seconds
+
+```
+rate.period = 30 
 ```
 
 
