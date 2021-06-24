@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import v1.com.tonym.bitcoinusdconverter.model.ExchangeRate;
 import v1.com.tonym.bitcoinusdconverter.service.ExchangeRateService;
 
 import java.text.DateFormat;
@@ -31,7 +30,7 @@ public class USDConverterController {
     /**
      * Endpoint to get the latest USD rate.
      *
-     * @return  {@link ExchangeRate}.
+     * @return  {@link Map}.
      */
     @GetMapping("/latest")
     public ResponseEntity<Map> getLatestRate() {
@@ -53,7 +52,7 @@ public class USDConverterController {
      *
      * @param startDate
      * @param endDate
-     * @return {@link ExchangeRate}.
+     * @return {@link Map}.
      */
     @GetMapping("/historical")
     public ResponseEntity<Map> getDateRangeRate(@RequestParam("startDate") String startDate,

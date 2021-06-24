@@ -16,6 +16,7 @@ public class ExchangeRateService {
     @Autowired
     private RestTemplate restTemplate;
 
+
     public Map getHistoricalRates(String startDate, String endDate){
         final String historicalDataURL = ApiUtil.getAbsoluteURL("historical/close.json?start={start}&end={end}");
         Map<String, String> params = new HashMap<>();

@@ -1,11 +1,8 @@
 package v1.com.tonym.bitcoinusdconverter.controller;
 
-import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -36,14 +33,9 @@ public class USDConvertorControllerTest {
     @MockBean
     private RestTemplate restTemplate;
 
-    @InjectMocks
-//    @Autowired
+    @MockBean
     private ExchangeRateService exchangeRateService;
 
-//    @Before
-//    public void setUp(){
-//        MockitoAnnotations.initMocks(this);
-//    }
 
 
     @Test
@@ -59,7 +51,9 @@ public class USDConvertorControllerTest {
         latestRates.put("rate", "35,320.1867");
         latestRates.put("description", "United States Dollar");
         latestRates.put("rate_float", 35320.1867);
-        //when(exchangeRateService.getLatestExchangeRate()).thenReturn(latestRates);
+
+
+        when(exchangeRateService.getLatestExchangeRate()).thenReturn(latestRates);
 
         this.mockMvc.perform(get("/v1/rates/latest")).andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -76,27 +70,16 @@ public class USDConvertorControllerTest {
         String startDate = "2021-01-25";
         String endDate = "2021-01-27";
 
-        Map historicalRates = new HashMap();
-        historicalRates.put("2021-01-25", 32255.35);
-        historicalRates.put("2021-01-26", 32518.3583);
-        historicalRates.put("2021-01-27", 30425.3933);
 
+        final String historicalDataURL = ApiUtil.getAbsoluteURL("historical/close.json?start={start}&end={end}");
+        Map<String, String> params = new HashMap<>();
+        params.put("start", startDate);
+        params.put("end", endDate);
 
-        //when(exchangeRateService.getHistoricalRates(startDate, endDate)).thenReturn(historicalRates);
+        String apiOutput = FileUtil.readFile("historical_rates.json");
+        //Mock Rest Template
+        when(restTemplate.getForEntity(historicalDataURL, String.class, params)).thenReturn(new ResponseEntity(apiOutput, HttpStatus.OK));
 
-        this.mockMvc.perform(get("/v1/rates/historical")).andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.2021-01-25").value(32255.35))
-                .andExpect(jsonPath("$.2021-01-26").value(32518.3583))
-                .andExpect(jsonPath("$.2021-01-27").value(30425.3933));
-
-    }
-
-
-    @Test
-    public void shouldReturnErrorForInvalidStartDate() throws Exception {
-        String startDate = "2021-05-25";
-        String endDate = "2021-01-27";
 
         Map historicalRates = new HashMap();
         historicalRates.put("2021-01-25", 32255.35);
@@ -106,11 +89,36 @@ public class USDConvertorControllerTest {
 
         when(exchangeRateService.getHistoricalRates(startDate, endDate)).thenReturn(historicalRates);
 
-        this.mockMvc.perform(get("/v1/rates/historical")).andExpect(status().isBadRequest())
+        this.mockMvc.perform(get("/v1/rates/historical").param("startDate",startDate).param("endDate",endDate)).andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.2021-01-25").value(32255.35))
+                .andExpect(jsonPath("$.2021-01-26").value(32518.3583))
+                .andExpect(jsonPath("$.2021-01-27").value(30425.3933));
+
+    }
+
+
+    @Test
+    @Ignore
+    public void shouldReturnErrorForInvalidStartDate() throws Exception {
+        String startDate = "2021-05-25";
+        String endDate = "2021-01-27";
+
+        final String historicalDataURL = ApiUtil.getAbsoluteURL("historical/close.json?start={start}&end={end}");
+        Map<String, String> params = new HashMap<>();
+        params.put("start", startDate);
+        params.put("end", endDate);
+
+        String apiOutput = FileUtil.readFile("historical_rates.json");
+        //Mock Rest Template
+        when(restTemplate.getForEntity(historicalDataURL, String.class, params)).thenReturn(new ResponseEntity(apiOutput, HttpStatus.OK));
+
+
+        this.mockMvc.perform(get("/v1/rates/historical").param("startDate",startDate).param("endDate",endDate)).andExpect(status().isBadRequest())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.error").value("Start date is later than end date"));
 
     }
 
-
+   
 }

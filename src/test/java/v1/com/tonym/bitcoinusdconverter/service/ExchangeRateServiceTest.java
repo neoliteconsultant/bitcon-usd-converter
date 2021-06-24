@@ -1,7 +1,6 @@
 package v1.com.tonym.bitcoinusdconverter.service;
 
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -42,18 +41,6 @@ public class ExchangeRateServiceTest {
         expectedRates.put("rate", "35,320.1867");
         expectedRates.put("description", "United States Dollar");
         expectedRates.put("rate_float", 35320.1867);
-
-
-
-         /*
-        ExchangeRate latestExchangeRate = new ExchangeRate();
-        Time time = new Time("Jun 23, 2021 12:03:00 UTC","2021-06-23T12:03:00+00:00","Jun 23, 2021 at 13:03 BST");
-        latestExchangeRate.setTime(time);
-        latestExchangeRate.setDisclaimer("This data was produced from the CoinDesk Bitcoin Price Index (USD). Non-USD currency data converted using hourly conversion rate from openexchangerates.org");
-
-        Bpi bpi = new Bpi();
-        bpi.setUsd(new Usd("USD","34,008.4200","United States Dollar",34008.42f));
-        latestExchangeRate.setBpi(bpi);*/
 
         Map actualRates = exchangeRateService.getLatestExchangeRate();
         assertEquals(expectedRates, actualRates);

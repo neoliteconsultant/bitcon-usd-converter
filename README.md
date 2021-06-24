@@ -13,7 +13,7 @@ the following tools
 
 
 
-### Running the project     
+### Running the application     
 
 1. Navigate to the project root (bitcoin-usd-converer).
 
@@ -36,14 +36,14 @@ $ curl http://localhost:8097/v1/rates/latest
 Get historical exchange rates.
 
 ``` 
-$ "curl http://localhost:8097/v1/rates/historical?startDate={startDate}&endDate={endDate}"
+$ curl "http://localhost:8097/v1/rates/historical?startDate={startDate}&endDate={endDate}"
 ```
 
 Where {startDate} and {endDate} are the start and end dates in YYYY-MM-DD format
 respectively, e.g
 
 ``` 
-$ "curl http://localhost:8097/v1/rates/historical?startDate=2021-01-25&endDate=2021-01-27"
+$ curl "http://localhost:8097/v1/rates/historical?startDate=2021-01-25&endDate=2021-01-27"
 ```
 ### Configuring exchange rate period
 
@@ -62,15 +62,7 @@ To run unit tests, run mvn test in a shell/command line from the project root.
   $ mvn test
   ```
  
- 
 
-### Javadoc 
-To generate javadocs, run mvn javadoc:javadoc goal in a shell from the project root.
-  ```
-  $ mvn javadoc:javadoc
-  ```
-
-The generated javadoc is located in target/site/apidocs
   
 
 

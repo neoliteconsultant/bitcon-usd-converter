@@ -34,7 +34,7 @@ public class ScheduleExchangeRateTaskTest {
 
 	@Test
 	public void checkExchangeRate() {
-		await().atMost(Duration.TEN_SECONDS).untilAsserted(() -> {
+		await().atMost(Duration.ONE_MINUTE).untilAsserted(() -> {
 			verify(tasks, atLeast(2)).checkExchangeRate();
 		});
 	}

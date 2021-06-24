@@ -1,11 +1,8 @@
 package v1.com.tonym.bitcoinusdconverter.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.FileCopyUtils;
-
 
 import java.io.IOException;
 import java.io.InputStream;
