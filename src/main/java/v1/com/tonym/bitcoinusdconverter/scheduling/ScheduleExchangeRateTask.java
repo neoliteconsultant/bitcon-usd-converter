@@ -35,7 +35,7 @@ public class ScheduleExchangeRateTask {
 
     System.setProperty("exchangeRateInterval", String.valueOf(exchangeRateInterval));
 
-    log.info("Exchange rate is {} seconds", ratePeriod);
+//    log.info("Exchange rate is {} seconds", ratePeriod);
 
   }
 

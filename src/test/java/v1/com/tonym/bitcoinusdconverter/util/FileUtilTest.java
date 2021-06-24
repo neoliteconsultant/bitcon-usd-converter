@@ -1,6 +1,7 @@
 package v1.com.tonym.bitcoinusdconverter.util;
 
 import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.Assert.assertEquals;
 

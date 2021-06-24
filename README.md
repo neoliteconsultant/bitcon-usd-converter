@@ -15,10 +15,19 @@ the following tools
 
 ### Running the application     
 
-1. Navigate to the project root (bitcoin-usd-converer).
+1. Clone the project using Git: 
+   ```
+   $ git clone https://github.com/neoliteconsultant/bitcon-usd-converter.git
+   ```
+
+2. Navigate to the project root (bitcoin-usd-converer).
+
+   ```
+   $ cd bitcon-usd-converter
+   ```
 
    
-2. Run the application:
+3. Run the application:
    ```
    $ ./mvnw spring-boot:run
    ```
