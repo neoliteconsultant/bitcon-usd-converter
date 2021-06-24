@@ -25,11 +25,16 @@ the following tools
    ```
    cd bitcon-usd-converter
    ```
+   
+3. Build an executable jar at the command line :
+   ```
+   mvn package
+   ```
 
    
-3. Run the application:
+4. Run the application:
    ```
-   ./mvnw spring-boot:run
+   java -jar target/bitcoin-usd-converter-1.0.0.jar
    ```
 
 
