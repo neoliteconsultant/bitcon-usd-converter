@@ -41,7 +41,7 @@ public class ExchangeRateService {
         ResponseEntity<String> exchangeRateResult = restTemplate.getForEntity(latestRateURL, String.class);
 
         Map usdExchangeRate = null;
-        if(exchangeRateResult.getStatusCodeValue()== HttpStatus.OK.value()){//Coindesk API is unavailable
+        if(exchangeRateResult.getStatusCodeValue()== HttpStatus.OK.value()){
             String resultBody = exchangeRateResult.getBody();
             usdExchangeRate = JsonPath.parse(resultBody).read("$.bpi.USD");
         }

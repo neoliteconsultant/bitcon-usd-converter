@@ -15,18 +15,12 @@ the following tools
 
 ### Running the project     
 
-1. To run the project, navigate to the project root (bitcoin-usd-converer).
+1. Navigate to the project root (bitcoin-usd-converer).
 
    
-2. Build an executable jar at the command line :
+2. Run the application:
    ```
-   $ mvn package
-   ```
-
-
-3. Run the java archive located in the target folder:
-   ```
-   $ java -jar target/<jar-name>.jar
+   $ ./mvnw spring-boot:run
    ```
 
 
@@ -35,21 +29,21 @@ the following tools
 Get the latest exchange rates.
 
 ``` 
-$ curl http://localhost:8097/api/v1/rates/latest
+$ curl http://localhost:8097/v1/rates/latest
 ```
 
 
 Get historical exchange rates.
 
 ``` 
-$ curl http://localhost:8097/api/v1/rates/historical?startDate={startDate}&endDate={endDate}
+$ "curl http://localhost:8097/v1/rates/historical?startDate={startDate}&endDate={endDate}"
 ```
 
 Where {startDate} and {endDate} are the start and end dates in YYYY-MM-DD format
 respectively, e.g
 
 ``` 
-$ curl http://localhost:8097/api/v1/rates/historical?startDate=2021-01-25&endDate=2021-01-27
+$ "curl http://localhost:8097/v1/rates/historical?startDate=2021-01-25&endDate=2021-01-27"
 ```
 ### Configuring exchange rate period
 

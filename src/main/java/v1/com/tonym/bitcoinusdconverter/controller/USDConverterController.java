@@ -43,10 +43,8 @@ public class USDConverterController {
 
             return ResponseEntity.badRequest()
                     .body(errorMap);
-            //return errorMap;
         }
 
-        //return usdExchangeRate;
         return ResponseEntity.ok(exchangeRateResult);
     }
 
@@ -59,7 +57,7 @@ public class USDConverterController {
      */
     @GetMapping("/historical")
     public ResponseEntity<Map> getDateRangeRate(@RequestParam("startDate") String startDate,
-                                 @RequestParam("endDate")  String endDate) {
+                                 @RequestParam("endDate") String endDate) {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Map<String, String> errorMap = new HashMap<>();
@@ -70,7 +68,6 @@ public class USDConverterController {
 
             if(start.after(end)){
                 errorMap.put("error", "Start date is later than end date");
-                //return errorMap;
                 return ResponseEntity.badRequest()
                         .body(errorMap);
             }
@@ -89,10 +86,8 @@ public class USDConverterController {
 
             return ResponseEntity.badRequest()
                     .body(errorMap);
-            //return errorMap;
         }
         return ResponseEntity.ok(exchangeRateResult);
-        //return usdExchangeRates;
     }
 
 

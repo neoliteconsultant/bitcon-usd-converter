@@ -4,41 +4,31 @@ package v1.com.tonym.bitcoinusdconverter.model;
  * A class representation of an ExchangeRate.
  */
 public class ExchangeRate {
-    private String code;
-    private String rate;
-    private String description;
-    private float rate_float;
+    private Time time;
+    private String disclaimer;
+    private Bpi bpi;
 
-    public String getCode() {
-        return code;
+    public Time getTime() {
+        return time;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setTime(Time time) {
+        this.time = time;
     }
 
-
-    public String getRate() {
-        return rate;
+    public String getDisclaimer() {
+        return disclaimer;
     }
 
-    public void setRate(String rate) {
-        this.rate = rate;
+    public void setDisclaimer(String disclaimer) {
+        this.disclaimer = disclaimer;
     }
 
-    public String getDescription() {
-        return description;
+    public Bpi getBpi() {
+        return bpi;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public float getRate_float() {
-        return rate_float;
-    }
-
-    public void setRate_float(float rate_float) {
-        this.rate_float = rate_float;
+    public void setBpi(Bpi bpi) {
+        this.bpi = bpi;
     }
 }
